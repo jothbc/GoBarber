@@ -1,5 +1,8 @@
+import 'reflect-metadata';
 import express from 'express';
 import 'express-async-errors';
+
+import './database';
 
 import Routes from './routes';
 
