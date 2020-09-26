@@ -4,6 +4,8 @@ import { getRepository } from 'typeorm';
 import User from '../models/User';
 import authConfig from '../config/auth';
 
+import AppError from '../errors/AppError';
+
 interface Request {
   email: string;
   password: string;
@@ -25,7 +27,7 @@ class AuthenticateUserService {
 
     // caso nao exista devolve o throw
     if (!user) {
-      throw new Error('Email/Senha incorreto');
+      throw new AppError('incorrect email/password combination', 401);
     }
 
     // compara o password descriptografado com o password criptografado vindo do banco de dados
@@ -33,7 +35,7 @@ class AuthenticateUserService {
 
     // caso seja incorreto devolve um throw
     if (!passwordMatched) {
-      throw new Error('Email/Senha incorreto');
+      throw new AppError('incorrect email/password combination', 401);
     }
 
     // gera o token
