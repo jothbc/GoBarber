@@ -4,6 +4,8 @@ import express, { NextFunction, Request, Response } from 'express';
 // para isso deve-se usar os try catch dentro da rota ou se for usar um middleware de error basta usar a lib abaixo e claro usar o middlewre depois das rotas
 import 'express-async-errors';
 
+import cors from 'cors';
+
 import './database';
 
 import Routes from './routes';
@@ -13,6 +15,9 @@ import uploadConfig from './config/upload';
 import AppError from './errors/AppError';
 
 const app = express();
+
+app.use(cors());
+
 app.use(express.json());
 
 // uma rota statica que serve a pasta que contem as imagens
