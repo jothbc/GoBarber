@@ -4,16 +4,15 @@ import SignUp from './pages/SignUp';
 
 import GlobalStyle from './styles/global';
 
-// importação do component do contexto do auth
-// onde o AuthProvider recebe o children que sao as rotas que vao ter acesso ao AuthContext.Provider
-import { AuthProvider } from './context/AuthContext';
+import AppProvider from './hooks';
 
 const App: React.FC = () => {
   return (
     <>
-      <AuthProvider>
+      <AppProvider>
         <SignIn />
-      </AuthProvider>
+      </AppProvider>
+
       <GlobalStyle />
     </>
   );
